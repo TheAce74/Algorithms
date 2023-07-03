@@ -12,17 +12,32 @@ function linearSearchRecursion(arr, item, i = 0) {
   else return linearSearchRecursion(arr, item, ++i);
 }
 
-function binarySearch(arr, item, left = 0, right) {
+function binarySearchLoop(arr, item, left = 0, right) {
+  right = !Object.is(right, undefined) ? right : arr.length - 1;
+  while (right >= left) {
+    let mid = Math.floor((left + right) / 2);
+    if (arr[mid] === item) {
+      return `The item ${item} is located at index ${mid}`;
+    } else if (arr[mid] < item) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
+  }
+  return `item ${item} not found`;
+}
+
+function binarySearchRecursion(arr, item, left = 0, right) {
   right = !Object.is(right, undefined) ? right : arr.length - 1;
   const mid = Math.floor((left + right) / 2);
   if (arr[mid] === item) {
     return `The item ${item} is located at index ${mid}`;
   } else if (arr[mid] < item) {
     left = mid + 1;
-    return binarySearch(arr, item, left, right);
+    return binarySearchRecursion(arr, item, left, right);
   } else if (arr[mid] > item) {
     right = mid - 1;
-    return binarySearch(arr, item, left, right);
+    return binarySearchRecursion(arr, item, left, right);
   } else {
     return `item ${item} not found`;
   }
@@ -68,18 +83,36 @@ function jumpSearchRecursion(arr, item, i = 0) {
   }
 }
 
-function interpolationSearch(arr, item, low = 0, high) {
+function interpolationSearchLoop(arr, item, low = 0, high) {
   high = !Object.is(high, undefined) ? high : arr.length - 1;
-  const position =
-    low + ((item - arr[low]) * (high - low)) / (arr[high] - arr[low]);
+  while (high >= low) {
+    let position = Math.floor(
+      low + ((item - arr[low]) * (high - low)) / (arr[high] - arr[low])
+    );
+    if (arr[position] === item) {
+      return `The item ${item} is located at index ${position}`;
+    } else if (arr[position] < item) {
+      low = position + 1;
+    } else {
+      high = position - 1;
+    }
+  }
+  return `item ${item} not found`;
+}
+
+function interpolationSearchRecursion(arr, item, low = 0, high) {
+  high = !Object.is(high, undefined) ? high : arr.length - 1;
+  const position = Math.floor(
+    low + ((item - arr[low]) * (high - low)) / (arr[high] - arr[low])
+  );
   if (arr[position] === item) {
     return `The item ${item} is located at index ${position}`;
   } else if (arr[position] < item) {
     low = position + 1;
-    return interpolationSearch(arr, item, low, high);
+    return interpolationSearchRecursion(arr, item, low, high);
   } else if (arr[position] > item) {
     high = position - 1;
-    return interpolationSearch(arr, item, low, high);
+    return interpolationSearchRecursion(arr, item, low, high);
   } else {
     return `item ${item} not found`;
   }
@@ -94,7 +127,9 @@ const item = Math.floor(Math.random() * 101);
 
 console.log(linearSearchLoop(arr, item));
 console.log(linearSearchRecursion(arr, item));
-console.log(binarySearch(arr, item));
+console.log(binarySearchLoop(arr, item));
+console.log(binarySearchRecursion(arr, item));
 console.log(jumpSearchLoop(arr, item));
 console.log(jumpSearchRecursion(arr, item));
-console.log(interpolationSearch(arr, item));
+console.log(interpolationSearchLoop(arr, item));
+console.log(interpolationSearchRecursion(arr, item));
