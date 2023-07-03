@@ -216,15 +216,15 @@ for (let i = 0; i <= 100; i++) {
 const item = Math.floor(Math.random() * 101);
 const subArr = arr.slice(item);
 
-// console.log(linearSearchLoop(arr, item));
-// console.log(linearSearchRecursion(arr, item));
-// console.log(binarySearchLoop(arr, item));
-// console.log(binarySearchRecursion(arr, item));
-// console.log(jumpSearchLoop(arr, item));
-// console.log(jumpSearchRecursion(arr, item));
-// console.log(interpolationSearchLoop(arr, item));
-// console.log(interpolationSearchRecursion(arr, item));
-// console.log(exponentialSearchLoop(arr, item));
-// console.log(exponentialSearchRecursion(arr, item));
-// console.log(sublistSearchLoop(subArr, arr));
+console.log(linearSearchLoop(arr, item));
+console.log(linearSearchRecursion(arr, item));
+console.log(binarySearchLoop(arr, item));
+console.log(binarySearchRecursion(arr, item));
+console.log(jumpSearchLoop(arr, item));
+console.log(jumpSearchRecursion(arr, item));
+console.log(interpolationSearchLoop(arr, item));
+console.log(interpolationSearchRecursion(arr, item));
+console.log(exponentialSearchLoop(arr, item));
+console.log(exponentialSearchRecursion(arr, item));
+console.log(sublistSearchLoop(subArr, arr));
 console.log(sublistSearchRecursion(subArr, arr));
