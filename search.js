@@ -202,7 +202,7 @@ function sublistSearchRecursion(sublist, list, i = 0, j = 0) {
   } else if (sublist[j] === list[i] && j < sublist.length - 1) {
     return sublistSearchRecursion(sublist, list, ++i, ++j);
   } else if (sublist[j] === list[i] && j === sublist.length - 1) {
-    return "List Found";
+    return "List found";
   } else {
     return "List not found";
   }
