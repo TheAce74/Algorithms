@@ -181,12 +181,27 @@ function exponentialSearchRecursion(arr, item, exponent = 0) {
   }
 }
 
+function sublistSearchLoop(sublist, list) {
+  for (let i = 0; i < list.length; i++) {
+    if (sublist[0] === list[i]) {
+      for (let j = 1, k = i + 1; j < sublist.length; j++, k++) {
+        if (sublist[j] !== list[k]) return "List not found";
+      }
+      return "List found";
+    } else {
+      continue;
+    }
+  }
+  return "List not found";
+}
+
 //driver code
 const arr = [];
 for (let i = 0; i <= 100; i++) {
   arr.push(i);
 }
 const item = Math.floor(Math.random() * 101);
+const subArr = arr.slice(item);
 
 console.log(linearSearchLoop(arr, item));
 console.log(linearSearchRecursion(arr, item));
@@ -198,3 +213,4 @@ console.log(interpolationSearchLoop(arr, item));
 console.log(interpolationSearchRecursion(arr, item));
 console.log(exponentialSearchLoop(arr, item));
 console.log(exponentialSearchRecursion(arr, item));
+console.log(sublistSearchLoop(subArr, arr));
