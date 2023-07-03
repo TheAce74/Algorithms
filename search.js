@@ -118,6 +118,35 @@ function interpolationSearchRecursion(arr, item, low = 0, high) {
   }
 }
 
+function exponentialSearchLoop(arr, item) {
+  let exponent = 0;
+  const binary = (arr, item, lower, upper) => {
+    while (upper >= lower) {
+      let middle = Math.floor((lower + upper) / 2);
+      if (arr[middle] === item) {
+        return `The item ${item} is located at index ${middle}`;
+      } else if (arr[middle] < item) {
+        lower = middle + 1;
+      } else {
+        upper = middle - 1;
+      }
+    }
+    return `item ${item} not found`;
+  };
+  while (2 ** (exponent - 1) <= arr.length) {
+    exponent++;
+    if (arr[0] === item) {
+      return `The item ${item} is located at index 0`;
+    } else if (arr[2 ** exponent] === item) {
+      return `The item ${item} is located at index ${2 ** exponent}`;
+    } else if (arr[2 ** exponent] > item) {
+      return binary(arr, item, 2 ** (exponent - 1), 2 ** exponent);
+    } else {
+      return binary(arr, item, 2 ** exponent, arr.length - 1);
+    }
+  }
+}
+
 //driver code
 const arr = [];
 for (let i = 0; i <= 100; i++) {
@@ -133,3 +162,4 @@ console.log(jumpSearchLoop(arr, item));
 console.log(jumpSearchRecursion(arr, item));
 console.log(interpolationSearchLoop(arr, item));
 console.log(interpolationSearchRecursion(arr, item));
+console.log(exponentialSearchLoop(arr, item));
