@@ -1,4 +1,9 @@
 //search algorithms declaration
+/*
+Dev Note:
+The arrays passed into all the search algorithms here (except the linear search) must be sorted in
+ascending order
+*/
 function linearSearchLoop(arr, item) {
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] === item) return `The item ${item} is located at index ${i}`;
@@ -148,6 +153,7 @@ function exponentialSearchLoop(arr, item) {
 }
 
 function exponentialSearchRecursion(arr, item, exponent = 0) {
+  if (2 ** (exponent - 1) > arr.length) return `item ${item} not found`;
   const binary = (arr, item, lower, upper) => {
     const middle = Math.floor((lower + upper) / 2);
     if (arr[middle] === item) {
@@ -162,7 +168,6 @@ function exponentialSearchRecursion(arr, item, exponent = 0) {
       return `item ${item} not found`;
     }
   };
-  if (2 ** (exponent - 1) > arr.length) return `item ${item} not found`;
   if (arr[0] === item) {
     return `The item ${item} is located at index 0`;
   } else if (arr[2 ** exponent] === item) {
