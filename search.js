@@ -195,6 +195,19 @@ function sublistSearchLoop(sublist, list) {
   return "List not found";
 }
 
+function sublistSearchRecursion(sublist, list, i = 0, j = 0) {
+  if (j === sublist.length || i === list.length) return "List not found";
+  if (sublist[j] !== list[i]) {
+    return sublistSearchRecursion(sublist, list, ++i);
+  } else if (sublist[j] === list[i] && j < sublist.length - 1) {
+    return sublistSearchRecursion(sublist, list, ++i, ++j);
+  } else if (sublist[j] === list[i] && j === sublist.length - 1) {
+    return "List Found";
+  } else {
+    return "List not found";
+  }
+}
+
 //driver code
 const arr = [];
 for (let i = 0; i <= 100; i++) {
@@ -203,14 +216,15 @@ for (let i = 0; i <= 100; i++) {
 const item = Math.floor(Math.random() * 101);
 const subArr = arr.slice(item);
 
-console.log(linearSearchLoop(arr, item));
-console.log(linearSearchRecursion(arr, item));
-console.log(binarySearchLoop(arr, item));
-console.log(binarySearchRecursion(arr, item));
-console.log(jumpSearchLoop(arr, item));
-console.log(jumpSearchRecursion(arr, item));
-console.log(interpolationSearchLoop(arr, item));
-console.log(interpolationSearchRecursion(arr, item));
-console.log(exponentialSearchLoop(arr, item));
-console.log(exponentialSearchRecursion(arr, item));
-console.log(sublistSearchLoop(subArr, arr));
+// console.log(linearSearchLoop(arr, item));
+// console.log(linearSearchRecursion(arr, item));
+// console.log(binarySearchLoop(arr, item));
+// console.log(binarySearchRecursion(arr, item));
+// console.log(jumpSearchLoop(arr, item));
+// console.log(jumpSearchRecursion(arr, item));
+// console.log(interpolationSearchLoop(arr, item));
+// console.log(interpolationSearchRecursion(arr, item));
+// console.log(exponentialSearchLoop(arr, item));
+// console.log(exponentialSearchRecursion(arr, item));
+// console.log(sublistSearchLoop(subArr, arr));
+console.log(sublistSearchRecursion(subArr, arr));
