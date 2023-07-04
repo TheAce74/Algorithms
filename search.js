@@ -208,6 +208,10 @@ function sublistSearchRecursion(sublist, list, i = 0, j = 0) {
   }
 }
 
+/*the sublist search algorithm can also suffice for a substring search with just a few tweaks so I didn't
+bother adding it
+*/
+
 //driver code
 const arr = [];
 for (let i = 0; i <= 100; i++) {
