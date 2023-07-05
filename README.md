@@ -5,3 +5,4 @@ This repo is dedicated to implementing certain algorithms I've learned (from som
 ## Table of Algos
 
 - [Search Algorithms](./search.js)
+- [Sort Algorithms](./sort.js)
