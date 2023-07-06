@@ -41,6 +41,23 @@ function bubbleSortLoop(arr, isAscending = true) {
   return reverseLoop(arr);
 }
 
+function bubbleSortRecursion(arr, isAscending = true) {
+  const outer = (arr, i) => {
+    if (i === arr.length) {
+      if (isAscending) return arr;
+      return reverseRecursion(arr);
+    } else {
+      const inner = (arr, i, j) => {
+        if (j === arr.length - i) return arr;
+        if (arr[j] > arr[j + 1]) arr.splice(j, 2, arr[j + 1], arr[j]);
+        return inner(arr, i, ++j);
+      };
+      return outer(inner(arr, i, 0), ++i);
+    }
+  };
+  return outer(arr, 0);
+}
+
 //driver code
 const arr = [];
 for (let i = 0; i <= 100; i++) {
@@ -51,3 +68,4 @@ arr.sort(() => Math.random() - 0.5);
 //[8, 2, 6, 4, 5], false - testing purposes
 
 console.log(bubbleSortLoop(arr));
+console.log(bubbleSortRecursion(arr));
