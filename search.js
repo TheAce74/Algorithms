@@ -212,6 +212,45 @@ function sublistSearchRecursion(sublist, list, i = 0, j = 0) {
 bother adding it
 */
 
+function fibonacciSearchLoop(arr, item) {
+  const fib = (num) => {
+    if (num < 1) return 0;
+    if (num === 1) return 1;
+    let num1 = 0;
+    let num2 = 1;
+    let num3;
+    for (let i = 1; i < num; i++) {
+      num3 = num1 + num2;
+      num1 = num2;
+      num2 = num3;
+    }
+    return num3;
+  };
+  const min = (val1, val2) => {
+    if (val1 === val2) return val1;
+    return val1 < val2 ? val1 : val2;
+  };
+  let k = 0;
+  while (fib(k) < arr.length) k++;
+  let offset = -1;
+  let i;
+  while (fib(k) > 1) {
+    i = min(offset + fib(k - 2), arr.length - 1);
+    if (item > arr[i]) {
+      k = k - 1;
+      offset = i;
+    } else if (item < arr[i]) {
+      k = k - 2;
+    } else {
+      return `The item ${item} is located at index ${i}`;
+    }
+  }
+  if (fib(k - 1) && arr[offset + 1] === item) {
+    return `The item ${item} is located at index ${offset + 1}`;
+  }
+  return `item ${item} not found`;
+}
+
 //driver code
 const arr = [];
 for (let i = 0; i <= 100; i++) {
@@ -232,3 +271,4 @@ console.log(exponentialSearchLoop(arr, item));
 console.log(exponentialSearchRecursion(arr, item));
 console.log(sublistSearchLoop(subArr, arr));
 console.log(sublistSearchRecursion(subArr, arr));
+console.log(fibonacciSearchLoop(arr, item));
