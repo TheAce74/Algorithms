@@ -59,15 +59,15 @@ function bubbleSortRecursion(arr, isAscending = true) {
 }
 
 function insertionSortLoop(arr, isAscending = true) {
-  let keyItem;
+  let current;
   for (let i = 0; i < arr.length; i++) {
-    keyItem = arr[i];
+    current = arr[i];
     j = i - 1;
-    while (j >= 0 && arr[j] > keyItem) {
+    while (j >= 0 && arr[j] > current) {
       arr[j + 1] = arr[j];
       j -= 1;
     }
-    arr[j + 1] = keyItem;
+    arr[j + 1] = current;
   }
   if (isAscending) return arr;
   return reverseLoop(arr);
