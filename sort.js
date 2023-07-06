@@ -73,6 +73,26 @@ function insertionSortLoop(arr, isAscending = true) {
   return reverseLoop(arr);
 }
 
+function insertionSortRecursion(arr, isAscending = true, i = 0, current) {
+  let j;
+  if (i === arr.length) {
+    if (isAscending) return arr;
+    return reverseLoop(arr);
+  } else {
+    current = arr[i];
+    j = i - 1;
+    const insert = () => {
+      if (j < 0 || arr[j] < current) return;
+      arr[j + 1] = arr[j];
+      j -= 1;
+      insert();
+    };
+    insert();
+    arr[j + 1] = current;
+    return insertionSortRecursion(arr, isAscending, ++i, current);
+  }
+}
+
 //driver code
 const arr = [];
 for (let i = 0; i <= 100; i++) {
@@ -85,3 +105,4 @@ arr.sort(() => Math.random() - 0.5);
 console.log(bubbleSortLoop(arr));
 console.log(bubbleSortRecursion(arr));
 console.log(insertionSortLoop(arr));
+console.log(insertionSortRecursion(arr));
