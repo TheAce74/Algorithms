@@ -93,6 +93,44 @@ function insertionSortRecursion(arr, isAscending = true, i = 0, current) {
   }
 }
 
+function mergeSort(arr, isAscending = true) {
+  const merge = (left, right, arr) => {
+    let i = 0,
+      l = 0,
+      r = 0;
+    while (l < left.length && r < right.length) {
+      if (left[l] < right[r]) {
+        arr[i] = left[l];
+        i++;
+        l++;
+      } else {
+        arr[i] = right[r];
+        i++;
+        r++;
+      }
+    }
+    while (l < left.length) {
+      arr[i] = left[l];
+      i++;
+      l++;
+    }
+    while (r < right.length) {
+      arr[i] = right[r];
+      i++;
+      r++;
+    }
+    if (isAscending) return arr;
+    return reverseLoop(arr);
+  };
+  if (arr.length <= 1) return;
+  const mid = Math.round(arr.length / 2);
+  const left = arr.slice(0, mid);
+  const right = arr.slice(mid);
+  mergeSort(left, isAscending);
+  mergeSort(right, isAscending);
+  return merge(left, right, arr);
+}
+
 //driver code
 const arr = [];
 for (let i = 0; i <= 100; i++) {
@@ -106,3 +144,4 @@ console.log(bubbleSortLoop(arr));
 console.log(bubbleSortRecursion(arr));
 console.log(insertionSortLoop(arr));
 console.log(insertionSortRecursion(arr));
+console.log(mergeSort(arr));
