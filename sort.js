@@ -131,6 +131,25 @@ function mergeSort(arr, isAscending = true) {
   return merge(left, right, arr);
 }
 
+function quickSort(arr, isAscending = true) {
+  if (arr.length <= 1) return arr;
+  const pivot = arr[arr.length - 1];
+  const high = [],
+    low = [],
+    same = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] > pivot) {
+      high.push(arr[i]);
+    } else if (arr[i] < pivot) {
+      low.push(arr[i]);
+    } else {
+      same.push(arr[i]);
+    }
+  }
+  if (isAscending) return [...quickSort(low), ...same, ...quickSort(high)];
+  return reverseRecursion([...quickSort(low), ...same, ...quickSort(high)]);
+}
+
 //driver code
 const arr = [];
 for (let i = 0; i <= 100; i++) {
@@ -145,3 +164,4 @@ console.log(bubbleSortRecursion(arr));
 console.log(insertionSortLoop(arr));
 console.log(insertionSortRecursion(arr));
 console.log(mergeSort(arr));
+console.log(quickSort(arr));
