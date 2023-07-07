@@ -157,8 +157,6 @@ for (let i = 0; i <= 100; i++) {
 }
 arr.sort(() => Math.random() - 0.5);
 
-//[8, 2, 6, 4, 5], false - testing purposes
-
 console.log(bubbleSortLoop(arr));
 console.log(bubbleSortRecursion(arr));
 console.log(insertionSortLoop(arr));
